@@ -1,9 +1,11 @@
 package EasyVersion;
-
+import Exception.*;
 public class TestServer {
-    public static void main(String[] args) {
-        HelloService helloService=new HelloServiceImpl();
-        RpcServer rpcServer = new RpcServer();
-        rpcServer.register(helloService,9000);
+    public static void main(String[] args) throws RpcException {
+        HelloService helloService = new HelloServiceImpl();
+        ServiceRegistry serviceRegistry = new DefaultServiceRegistry();
+        serviceRegistry.register(helloService);
+        RpcServer rpcServer = new RpcServer(serviceRegistry);
+        rpcServer.start(9002);
     }
 }

@@ -2,6 +2,7 @@ package EasyVersion;
 
 public class ResponseCode {
     public static final Integer SUCCESS=200;
+    public static final Integer METHOD_NOT_FOUND=202;
     private Integer statusCode;
     private String message;
 
