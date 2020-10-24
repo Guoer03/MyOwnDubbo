@@ -1,19 +1,20 @@
-package EasyVersion;
+package EasyVersion.register;
 
+import EasyVersion.HelloServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import Exception.RpcException;
-import Exception.RpcError;
+import EasyVersion.Exception.RpcException;
+import EasyVersion.Exception.RpcError;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class DefaultServiceRegistry implements ServiceRegistry {
+public class DefaultServiceProvider implements ServiceProvider {
     private static final Logger logger= LoggerFactory.getLogger(HelloServiceImpl.class);
-    private   final Map<String,Object> serviceMap=new ConcurrentHashMap<>();
+    private static final Map<String,Object> serviceMap=new ConcurrentHashMap<>();
     //将服务名与提供服务的对象的对应关系保存在一个ConcurrentHashMap来保存当前有哪些服务已经被注册（考虑到并发场景）
 
-    private final Set<String> registeredService=ConcurrentHashMap.newKeySet();
+    private static final Set<String> registeredService=ConcurrentHashMap.newKeySet();
     @Override
     public <T> void register(T service) throws RpcException {
         String serviceName=service.getClass().getCanonicalName();

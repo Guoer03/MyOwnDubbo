@@ -7,6 +7,11 @@ import java.lang.reflect.Proxy;
 public class RpcClientProxy implements InvocationHandler {
     private String host;
     private int port;
+    private RpcClient client;
+    public RpcClientProxy(RpcClient client) {
+        this.client=client;
+    }
+
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         RpcRequest request = RpcRequest.builder().interfaceName(method.getDeclaringClass().getName())
@@ -14,8 +19,7 @@ public class RpcClientProxy implements InvocationHandler {
                 .parameters(args)
                 .paramTypes(method.getParameterTypes())
                 .build();
-        final RpcClient client = new RpcClient();
-        return ((RpcResponse)client.sendRequest(request,host,port)).getData();
+        return ((RpcResponse)client.sendRequest(request)).getData();
     }
 
     public RpcClientProxy(String host, int port) {
