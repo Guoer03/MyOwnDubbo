@@ -1,8 +1,9 @@
 package EasyVersion;
 
+import EasyVersion.register.ServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import Exception.*;
+import EasyVersion.Exception.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,12 +15,12 @@ public class RequestHandlerThread implements Runnable{
 
     private Socket socket;
     private RequestHandler requestHandler;
-    private ServiceRegistry serviceRegistry;
+    private ServiceProvider serviceProvider;
 
-    public RequestHandlerThread(Socket socket, RequestHandler requestHandler, ServiceRegistry serviceRegistry) {
+    public RequestHandlerThread(Socket socket, RequestHandler requestHandler, ServiceProvider serviceProvider) {
         this.socket = socket;
         this.requestHandler = requestHandler;
-        this.serviceRegistry = serviceRegistry;
+        this.serviceProvider = serviceProvider;
     }
 
     @Override
@@ -28,7 +29,7 @@ public class RequestHandlerThread implements Runnable{
             ObjectOutputStream objectOutputStream=new ObjectOutputStream(socket.getOutputStream());
             RpcRequest request =(RpcRequest) objectInputStream.readObject();
             String interfaceName = request.getInterfaceName();
-            Object service = serviceRegistry.getService(interfaceName);
+            Object service = serviceProvider.getService(interfaceName);
             Object result = requestHandler.handle(request, service);
             objectOutputStream.writeObject(RpcResponse.success(result));
             objectOutputStream.flush();

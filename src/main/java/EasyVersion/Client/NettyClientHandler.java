@@ -1,5 +1,7 @@
-package EasyVersion;
+package EasyVersion.Client;
 
+import EasyVersion.RpcResponse;
+import EasyVersion.Server.NettyServerHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.AttributeKey;

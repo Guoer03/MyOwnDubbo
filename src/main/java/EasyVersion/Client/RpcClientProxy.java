@@ -1,4 +1,7 @@
-package EasyVersion;
+package EasyVersion.Client;
+
+import EasyVersion.RpcRequest;
+import EasyVersion.RpcResponse;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -7,8 +10,8 @@ import java.lang.reflect.Proxy;
 public class RpcClientProxy implements InvocationHandler {
     private String host;
     private int port;
-    private RpcClient client;
-    public RpcClientProxy(RpcClient client) {
+    private CommonDubboClient client;
+    public RpcClientProxy(CommonDubboClient client) {
         this.client=client;
     }
 

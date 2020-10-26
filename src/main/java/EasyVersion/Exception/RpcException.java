@@ -1,4 +1,4 @@
-package Exception;
+package EasyVersion.Exception;
 
 public class RpcException extends Exception {
     public RpcException() {

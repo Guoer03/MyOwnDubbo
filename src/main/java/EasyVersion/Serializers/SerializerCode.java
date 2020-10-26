@@ -1,4 +1,4 @@
-package EasyVersion;
+package EasyVersion.Serializers;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

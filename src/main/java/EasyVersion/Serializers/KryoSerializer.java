@@ -1,7 +1,8 @@
-package EasyVersion;
+package EasyVersion.Serializers;
 
+import EasyVersion.RpcRequest;
+import EasyVersion.RpcResponse;
 import com.esotericsoftware.kryo.Kryo;
-import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import org.slf4j.Logger;
@@ -10,8 +11,6 @@ import org.slf4j.LoggerFactory;
 import javax.sql.rowset.serial.SerialException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.file.LinkPermission;
 
 public class KryoSerializer implements CommonSerializer {
     private static final Logger logger= LoggerFactory.getLogger(KryoSerializer.class);

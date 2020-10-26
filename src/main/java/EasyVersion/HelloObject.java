@@ -12,6 +12,9 @@ public class HelloObject implements Serializable {
     private String message;
     private Integer age;
 
+    public HelloObject() {
+    }
+
     public HelloObject(Integer id, String message) {
         this.id = id;
         this.message = message;

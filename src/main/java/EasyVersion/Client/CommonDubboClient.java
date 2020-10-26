@@ -1,13 +1,17 @@
 package EasyVersion.Client;
 
+import EasyVersion.RpcRequest;
 import EasyVersion.Serializers.CommonSerializer;
 import EasyVersion.register.ServiceProvider;
 import EasyVersion.register.ServiceRegistry;
 
-public abstract class ComonDubboServer {
-    protected String host;
-    protected int port;
+public abstract class CommonDubboClient {
     protected ServiceRegistry serviceRegistry;
     protected CommonSerializer serializer;
-    protected ServiceProvider serviceProvider;
+
+    public CommonDubboClient(ServiceRegistry serviceRegistry, CommonSerializer serializer) {
+        this.serviceRegistry = serviceRegistry;
+        this.serializer = serializer;
+    }
+    abstract Object sendRequest(RpcRequest rpcRequest);
 }

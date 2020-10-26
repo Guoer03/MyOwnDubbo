@@ -26,6 +26,10 @@ public class RequestHandler {
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
+        Class<?> clazz=rpcRequest.getParamTypes()[0];
+        System.out.println(clazz);
+        HelloObject object=(HelloObject) rpcRequest.getParameters()[0];
+        System.out.println(object.getMessage());
         return method.invoke(service,rpcRequest.getParameters());
     }
 }

@@ -1,6 +1,4 @@
-package EasyVersion;
-
-import io.netty.handler.codec.json.JsonObjectDecoder;
+package EasyVersion.Serializers;
 
 import javax.sql.rowset.serial.SerialException;
 

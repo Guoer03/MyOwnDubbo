@@ -1,15 +1,16 @@
-package EasyVersion;
+package EasyVersion.codec;
 
+import EasyVersion.PackageType;
+import EasyVersion.RpcRequest;
+import EasyVersion.RpcResponse;
+import EasyVersion.Serializers.CommonSerializer;
 import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.ReplayingDecoder;
-import io.netty.util.concurrent.EventExecutorGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
-import Exception.*;
+import EasyVersion.Exception.*;
 
 public class CommonDecoder extends ReplayingDecoder {
     private static final Logger logger=LoggerFactory.getLogger(CommonDecoder.class);
@@ -23,10 +24,10 @@ public class CommonDecoder extends ReplayingDecoder {
         }
         int packageCode=in.readInt();
         Class<?> packageClass;
-        if(packageCode==PackageType.RPCREQUEST){
-            packageClass=RpcRequest.class;
+        if(packageCode== PackageType.RPCREQUEST){
+            packageClass= RpcRequest.class;
         }else if(packageCode==PackageType.RPCRESPONSE){
-            packageClass=RpcResponse.class;
+            packageClass= RpcResponse.class;
         }else{
             logger.error("无法识别的数据包",packageCode);
             throw new RpcException(RpcError.UNKNOWN_PACKAGE_TYPE);

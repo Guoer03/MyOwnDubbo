@@ -1,10 +1,11 @@
-package EasyVersion;
+package EasyVersion.codec;
 
+import EasyVersion.PackageType;
+import EasyVersion.RpcRequest;
+import EasyVersion.Serializers.CommonSerializer;
 import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
-import io.netty.util.concurrent.EventExecutorGroup;
 
 public class CommonEncoder extends MessageToByteEncoder {
     private static final int MAGIC_NUMBER=0xCAFEBABE;

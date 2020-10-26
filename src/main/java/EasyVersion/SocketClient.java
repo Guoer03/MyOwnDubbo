@@ -10,10 +10,10 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 @Getter
 @Setter
-public class RpcClient {
+public class SocketClient {
     private String host;
     private int port;
-    private static final Logger logger= LoggerFactory.getLogger(RpcClient.class);
+    private static final Logger logger= LoggerFactory.getLogger(SocketClient.class);
     public  Object sendRequest(RpcRequest request,String host,int port){
         try(Socket socket = new Socket(host,port)){
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
