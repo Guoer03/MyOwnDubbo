@@ -28,9 +28,7 @@ public class DefaultConsistentHashLoadBalancer implements LoadBalancer{
         this.ClientAddr=clientAddr;
         this.virtualNodeNum=virtualNodeNum;
     }
-    /**
-     35      * 使用FNV1_32_HASH算法计算服务器的Hash值,这里不使用重写hashCode的方法，最终效果没区别
-     36      */
+    /*使用FNV1_32_HASH算法计算服务器的Hash值,这里不使用重写hashCode的方法，最终效果没区别*/
     private static int getHash(String str)
     {
         final int p = 16777619;

@@ -22,7 +22,7 @@ import java.net.InetSocketAddress;
 
 public class NettyServer extends CommonDubboServer{
     private static final Logger logger=LoggerFactory.getLogger(NettyServer.class);
-    public NettyServer(String host,int port,ServiceProvider serviceProvider,ServiceRegistry serviceRegistry,CommonSerializer serializer){
+    public NettyServer(String host,int port,ServiceProvider serviceProvider,ServiceRegistry serviceRegistry,CommonSerializer serializer) throws RpcException, IllegalAccessException, InstantiationException {
         super(host,port,serviceRegistry,serializer,serviceProvider);
     }
     @Override
@@ -58,13 +58,13 @@ public class NettyServer extends CommonDubboServer{
     }
 
     @Override
-    public <T> CommonDubboServer publishService(Object service, Class<T> serviceClass) throws RpcException {
+    public <T> CommonDubboServer publishService(Object service, String serviceName) throws RpcException {
         if(this.serializer==null){
             logger.error("未设置序列化器");
             throw new RpcException(RpcError.SERIALIZER_NOT_FOUND);
         }
         serviceProvider.register(service);
-        serviceRegistry.register(serviceClass.getCanonicalName(),new InetSocketAddress(host,port));
+        serviceRegistry.register(serviceName,new InetSocketAddress(host,port));
         return this;
     }
 }
